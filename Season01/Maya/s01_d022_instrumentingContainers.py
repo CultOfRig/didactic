@@ -21,8 +21,6 @@ def containerFromNode(mayaNode):
                                 otherwise None
     """
     fnDep = om2.MFnDependencyNode(mayaNode)
-
-    fnDep = om2.MFnDependencyNode(mayaNode)
     plug = fnDep.findPlug("message", False)
 
     for eachDestPlug in plug.destinations():
