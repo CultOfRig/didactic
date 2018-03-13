@@ -13,7 +13,6 @@ def iterMobFromActiveSelection():
 
 def containerFromNode(mayaNode):
     """
-
     :param mayaNode: `MObject` any dependency node in Maya
     :return: `MObject | None` the container object the argument is linked to if there is one
                                 otherwise None
@@ -39,7 +38,6 @@ def containerFromNode(mayaNode):
 
 def keyObjectsFromContainer(containerHandle, componentName):
     """
-
     :param containerHandle: `MObjectHandle`
     :param componentName: `str` mandatory now, used to compose full name of some exepcted items/paths
     :return: `dict` k,v pairs for interesting objects and their handle, None if unavailable
@@ -79,7 +77,6 @@ def keyObjectsFromContainer(containerHandle, componentName):
 
 def deleteGuideHierarchyFromKeyObjects(keyObs):
     """
-
     :param keyObs: `dict` key objects in a pre-canned dictionary as informed by keyObjectsFromContainer
     :return: `bool` True if the guide was found and deleted, False if one wasn't found
     """
@@ -168,13 +165,4 @@ for compName, mobhaContainer in selectedContainers.iteritems():
             disconnect = activePlugsDict['origin'] is None and activePlugsDict['guidedSource'] is not None
             swap = activePlugsDict['origin'] is not None and activePlugsDict['guidedSource'] is not None
             connect = activePlugsDict['origin'] is not None and activePlugsDict['guidedSource'] is None
-
-
-        # print allSwapCouples
-                
-
-
-
-
-
 
