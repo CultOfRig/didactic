@@ -6,9 +6,9 @@
 
 # --------- provisional ----------
 # delete the guide hierarchy (at time of move we haven't done the previous steps yet)
+# swap guide plugs (make sure they are all properly connected first)
 
 
 # ------------- to do --------------
-# swap guide plugs (make sure they are all properly connected first)
+# address missing cases
 # delete the nodes connected to toDelete
-
