@@ -394,23 +394,23 @@ class SwapGuideControl(om2.MPxCommand):
 
 
     @staticmethod
-    def undoIt(self):
+    def undoIt():
         """
         Maya expects this method to exist and to be able to call it if the command
           is flagged as undoable. Since all we use is a bunch of commands
           undoing is relatively trivial, and we can just call Maya's own undo
           and let it go over the chunk of commands that was ran during doIt()
         Normally this wouldn't be static as it might need to access something from
-          inside the instace of the command class that was run, but when
+          inside the instance of the command class that was run, but when
           all these methods do is call a one-liner Maya command there really
-          is no reason for them not to be a static wrapper of that command.
+          is no reason for them to be more than a static wrapper of the factory undo call.
         :return: `None`
         """
         m_cmds.undo()
 
 
     @staticmethod
-    def redoIt(self):
+    def redoIt():
         """
         See docstring for undoIt() above. This is equivalent except for redoing
           instead of undoing.
@@ -442,7 +442,7 @@ def initializePlugin(mob):
 def uninitializePlugin(mob):
     """
     See initializePlugin docstring, this is symmetrical and opposite to that.
-    It will be responsible to de-regsiter everything that initialize registered with the Maya client session
+    It will be responsible to de-register everything that initialize registered with the Maya client session
     :param mob: `MObject` Some black boxed entry point for Maya to manage this plug-in
     :return: `None`
     """
