@@ -103,7 +103,7 @@ def keyObjectsFromContainer(componentName, containerHandle):
             keyObsDict['control'] = om2.MObjectHandle(eachMob)
         elif objectName == 'guide':
             keyObsDict['guide'] = om2.MObjectHandle(eachMob)
-        elif objectName == 'control':
+        elif objectName == 'deform':
             keyObsDict['deform'] = om2.MObjectHandle(eachMob)
         elif objectName == '{}_toolParameters'.format(componentName):
             # todo: the above string composition running every loop is an abomination
@@ -213,6 +213,19 @@ for compName, mobhaContainer in iterContainersFromObjectIterator(iterMobFromActi
 
                 if doNothing:
                     pass
+                elif connect:
+                    activeOrigin_name = activePlugsDict['origin'].partialName(useFullAttributePath=True,
+                                                                              includeNodeName=True,
+                                                                              useLongNames=True)
+                    trackerOrigin_name = trackerPlugsDict['origin'].partialName(useFullAttributePath=True,
+                                                                                includeNodeName=True,
+                                                                                useLongNames=True)
+                    activeGuided_name = activePlugsDict['guided'].partialName(useFullAttributePath=True,
+                                                                              includeNodeName=True,
+                                                                              useLongNames=True)
+
+                    m_cmds.connectAttr(activeOrigin_name, activeGuided_name)
+                    m_cmds.disconnectAttr(activeOrigin_name, trackerOrigin_name)
                 elif disconnect:
                     activeGuidedSource_name = activePlugsDict['guidedSource'].partialName(useFullAttributePath=True,
                                                                                           includeNodeName=True,
@@ -226,23 +239,10 @@ for compName, mobhaContainer in iterContainersFromObjectIterator(iterMobFromActi
 
                     m_cmds.disconnectAttr(activeGuidedSource_name, activeGuided_name)
                     m_cmds.connectAttr(activeGuidedSource_name, trackerOrigin_name)
-                elif connect:
-                    activeOriginSource_name = activePlugsDict['origin'].partialName(useFullAttributePath=True,
-                                                                                    includeNodeName=True,
-                                                                                    useLongNames=True)
-                    trackerOrigin_name = trackerPlugsDict['origin'].partialName(useFullAttributePath=True,
-                                                                                includeNodeName=True,
-                                                                                useLongNames=True)
-                    activeGuided_name = activePlugsDict['guided'].partialName(useFullAttributePath=True,
+                elif swap:
+                    activeOrigin_name = activePlugsDict['origin'].partialName(useFullAttributePath=True,
                                                                               includeNodeName=True,
                                                                               useLongNames=True)
-
-                    m_cmds.connectAttr(activeOriginSource_name, activeGuided_name)
-                    m_cmds.disconnectAttr(activeOriginSource_name, trackerOrigin_name)
-                elif swap:
-                    activeOriginSource_name = activePlugsDict['origin'].partialName(useFullAttributePath=True,
-                                                                                    includeNodeName=True,
-                                                                                    useLongNames=True)
                     trackerOrigin_name = trackerPlugsDict['origin'].partialName(useFullAttributePath=True,
                                                                                 includeNodeName=True,
                                                                                 useLongNames=True)
@@ -253,14 +253,14 @@ for compName, mobhaContainer in iterContainersFromObjectIterator(iterMobFromActi
                                                                                           includeNodeName=True,
                                                                                           useLongNames=True)
                     m_cmds.connectAttr(activeGuidedSource_name, trackerOrigin_name, force=True)
-                    m_cmds.connectAttr(activeOriginSource_name, activeGuided_name, force=True)
+                    m_cmds.connectAttr(activeOrigin_name, activeGuided_name, force=True)
                 else:
                     # todo: raise meaningful error with sensible message
                     raise RuntimeError("should have never got here!")
 
         if DELETE_DG:
             # DG deletion part
-            toSwapPlug = mfn_dag.findPlug('toDelete', False)
+            toDeletePlug = mfn_dag.findPlug('toDelete', False)
             elemCount = toSwapPlug.evaluateNumElements()
 
             for i in xrange(elemCount):
