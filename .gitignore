@@ -99,3 +99,19 @@ ENV/
 
 # mypy
 .mypy_cache/
+*.obj
+*.pdb
+*.idb
+*.tlog
+*.ipch
+# pycharm
+.idea/*
+#vs
+.vs/*
+
+Patreon/June/Nodes101/Nodes101/Nodes101.vcxproj
+Patreon/June/Nodes101/Nodes101/Nodes101.vcxproj.filters
+Patreon/June/Nodes101/Nodes101/Nodes101.vcxproj.user
+Patreon/June/Nodes101/.vs/Nodes101/v15/.suo
+Patreon/June/Nodes101/.vs/Nodes101/v15/Browse.VC.db
+Patreon/June/Nodes101/Nodes101.sln

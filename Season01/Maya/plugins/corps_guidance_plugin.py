@@ -19,7 +19,7 @@ See repository for license and details at https://github.com/cultofrig/didactic
 This software is provided as-is, with no warranties, under the BSD 3-clause license.
 """
 
-from maya.api import OpenMaya as om2
+from maya.api import _OpenMaya_py2 as om2
 from maya import cmds as m_cmds
 
 
@@ -45,6 +45,7 @@ def containerFromNode(mayaNode):
     :return: `MObject | None` the container object the argument is linked to if there is one
                                 otherwise None
     """
+    
     fnDep = om2.MFnDependencyNode(mayaNode)
     plug = fnDep.findPlug("message", False)
 
@@ -378,7 +379,7 @@ class SwapGuideControl(om2.MPxCommand):
         # end delete DG nodes
 
         if rd:
-            # This section, if invoked, is responsible to delet the guide DAG object
+            # This section, if invoked, is responsible to delete the guide DAG object
             #     for the component, which should take with it the entire hierarchy
             guideMobha = self.__componentDict[GUIDE_KEY]
             if guideMobha is None or not guideMobha.isValid() or guideMobha.object().isNull():
