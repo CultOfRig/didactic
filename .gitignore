@@ -106,12 +106,8 @@ ENV/
 *.ipch
 # pycharm
 .idea/*
-#vs
-.vs/*
-
-Patreon/June/Nodes101/Nodes101/Nodes101.vcxproj
-Patreon/June/Nodes101/Nodes101/Nodes101.vcxproj.filters
-Patreon/June/Nodes101/Nodes101/Nodes101.vcxproj.user
-Patreon/June/Nodes101/.vs/Nodes101/v15/.suo
-Patreon/June/Nodes101/.vs/Nodes101/v15/Browse.VC.db
+#vs and code
+.vs
+.vscode
+*.vcxproj*
 Patreon/June/Nodes101/Nodes101.sln
