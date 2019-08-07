@@ -111,3 +111,5 @@ ENV/
 .vscode
 *.vcxproj*
 Patreon/June/Nodes101/Nodes101.sln
+test.py
+example.py
