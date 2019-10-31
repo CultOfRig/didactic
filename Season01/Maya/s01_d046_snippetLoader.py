@@ -6,14 +6,14 @@ Made to be loaded in the Maya shell to type inline tests while
 """
 
 try:
-    from Maya import s01_d046_snippets as snips
+    from Maya import s01_d046_rigItemIteration as snips
     reload(snips)
     print("reloading")
 except:
     import ptvsd
     ptvsd.enable_attach(address=('0.0.0.0', 3000), redirect_output=True)
 
-    k_path = "C:/Users/Jaco/OneDrive/CultOfRig/dev/didactic/Season01"
+    k_path = "" # Your directory goes here
 
     from sys import path
 
